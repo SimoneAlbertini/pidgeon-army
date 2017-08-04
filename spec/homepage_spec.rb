@@ -1,4 +1,5 @@
-describe App, type: :feature do
+describe 'Pidgeon Army App', type: :feature do
+
   it 'should display homepage' do
      visit '/'
      expect(page.status_code).to be 200
