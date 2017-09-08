@@ -21,7 +21,7 @@ end
 
 namespace :db do
   task :load_config do
-    require './lib/app.rb'
+    require './lib/environment'
   end
 
   # I Don't want to mess with current environment so I use a different rake process
