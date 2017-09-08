@@ -19,6 +19,13 @@ task :console do
   system 'pry -I . -I ../ -r environment.rb'
 end
 
+desc 'create react bundled assets'
+task :webpack do
+  Dir.chdir('react')
+  FileUtils.rm_rf('dist/.', secure: true)
+  system('webpack')
+end
+
 namespace :db do
   task :load_config do
     require './lib/environment'

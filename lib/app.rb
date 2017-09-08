@@ -13,7 +13,6 @@ class App < Sinatra::Application
     React::Sinatra.configure do |config|
       config.use_bundled_react = true
       config.env = ENV['RACK_ENV'] || :development
-      config.addon = true
       config.asset_path = File.join('react', 'dist', 'bundle.js')
       config.use_bundled_react = true
       config.runtime = :execjs
