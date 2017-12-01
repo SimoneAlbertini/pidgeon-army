@@ -42,4 +42,4 @@ namespace :db do
 end
 
 desc 'Run all the tests'
-task :test => [:'db:test:setup', :spec]
+task :test => [:'db:test:setup', :webpack, :spec]

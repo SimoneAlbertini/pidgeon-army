@@ -1,4 +1,5 @@
 import React from 'react'
-import Hello from './hello';
+import ReactDOM from 'react-dom'
+import Greeting from './hello';
 
-global.Hello = Hello;
+ReactDOM.render(<Greeting name="my_friend" />, document.getElementById('root'));
