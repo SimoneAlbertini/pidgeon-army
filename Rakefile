@@ -19,11 +19,25 @@ task :console do
   system 'pry -I . -I ../ -r environment.rb'
 end
 
-desc 'create react bundled assets'
-task :webpack do
-  Dir.chdir('react')
-  FileUtils.rm_rf('dist/.', secure: true)
-  system('webpack')
+task :work, [:option, :foo, :bar] => [:environment] do |t, args|
+  puts "work", args
+end
+
+namespace :webpack do
+  task :init do
+    Dir.chdir(File.join File.dirname(__FILE__), 'react')
+    FileUtils.rm_rf('dist/.', secure: true)
+  end
+
+  desc 'react assets DEVELOPMENT build'
+  task :dev => [:init] do
+    system('webpack')
+  end
+
+  desc 'react assets PRODUCTION build'
+  task :production => [:init] do
+    system('webpack -p')
+  end
 end
 
 namespace :db do
@@ -42,4 +56,4 @@ namespace :db do
 end
 
 desc 'Run all the tests'
-task :test => [:'db:test:setup', :webpack, :spec]
+task :test => [:'db:test:setup', :'webpack:dev', :spec]
