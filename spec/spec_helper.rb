@@ -17,15 +17,31 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'capybara/rspec'
+require 'capybara-webkit'
 require_relative '../lib/environment'
 
 Capybara.register_driver :rack_test do |app|
   Capybara::RackTest::Driver.new(app, headers: {'HTTP_USER_AGENT' => 'Capybara'})
 end
 
-Capybara.run_server = false
-Capybara.current_driver = :rack_test
-Capybara.app = App
+Capybara.register_driver :webkit do |app|
+  Capybara::Webkit::Driver.new(app, stdout: StringIO.new(''), stderr: StringIO.new(''), headers: {'HTTP_USER_AGENT' => 'Capybara'})
+end
+
+def set_capybara_app
+  Capybara.app = App
+  Capybara.current_driver = :rack_test
+  Capybara.run_server = false
+end
+
+def setup_javascript_test
+  set_capybara_app
+  Capybara.current_driver = :webkit
+  Capybara.app_host = nil
+  Capybara.run_server = true
+end
+
+set_capybara_app
 
 RSpec.configure do |config|
   require 'database_cleaner'

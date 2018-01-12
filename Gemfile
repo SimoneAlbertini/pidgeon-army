@@ -6,10 +6,10 @@ gem 'rake'
 gem 'sqlite3'
 gem 'require_all'
 gem 'pry'
-gem 'execjs'
 
 group :test do
   gem 'rspec'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
 end
