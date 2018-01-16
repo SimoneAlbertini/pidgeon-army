@@ -9,7 +9,7 @@ gem 'pry'
 
 group :test do
   gem 'rspec'
-  gem 'capybara'
+  gem 'capybara', '<= 2.14'
   gem 'capybara-webkit'
   gem 'database_cleaner'
 end
