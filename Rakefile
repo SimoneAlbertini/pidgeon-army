@@ -24,19 +24,14 @@ task :work, [:option, :foo, :bar] => [:environment] do |t, args|
 end
 
 namespace :webpack do
-  task :init do
-    Dir.chdir(File.join File.dirname(__FILE__), 'react')
-    FileUtils.rm_rf('dist/.', secure: true)
-  end
-
   desc 'react assets DEVELOPMENT build'
-  task :dev => [:init] do
-    system('webpack')
+  task :dev do
+    system('cd react; webpack')
   end
 
   desc 'react assets PRODUCTION build'
-  task :production => [:init] do
-    system('webpack -p')
+  task :production do
+    system('cd react; webpack -p')
   end
 end
 
