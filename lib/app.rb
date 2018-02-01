@@ -8,7 +8,7 @@ class App < Sinatra::Application
   set :public_folder, Proc.new { File.join(root, 'public') }
   set :views, Proc.new { File.join(root, 'views') }
 
-  get '/hello/:name' do |name|
-    erb :hello, :locals => {:name => name}
+  get '/' do
+    erb :homepage
   end
 end

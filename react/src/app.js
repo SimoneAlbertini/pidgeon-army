@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Greeting from './hello';
+import ManageContacts from './homepage';
 
-ReactDOM.render(<Greeting name="my_friend" />, document.getElementById('root'));
+ReactDOM.render(<ManageContacts />, document.getElementById('root'));
