@@ -11,4 +11,12 @@ class App < Sinatra::Application
   get '/' do
     erb :homepage
   end
+
+  get '/api/contact-list' do
+    content_type 'application/json'
+    [
+        {first_name: 'name1', last_name: 'last1', email: 'email1@email.com'},
+        {first_name: 'name2', last_name: 'last2', email: 'email2@email.com'}
+    ].to_json
+  end
 end
