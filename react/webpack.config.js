@@ -1,47 +1,47 @@
 var webpack = require('webpack');
 var uglify_js_plugin = new webpack.optimize.UglifyJsPlugin({
-  output: {
-    comments: false,
-  },
+    output: {
+        comments: false,
+    },
 });
 
 module.exports = {
-  context: __dirname + "/src",
-  entry: {
-  	javascript: './app.js',
-  },
-  
-  output: {
-    filename: 'bundle.js',
-    path: __dirname + "/../public/react_dist",
-  },
+    context: __dirname + "/src",
+    entry: {
+        javascript: './app.js',
+    },
 
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015'],
-        },
-      },
-    ],
-  },
+    output: {
+        filename: 'bundle.js',
+        path: __dirname + "/../public/react_dist",
+    },
 
-  plugins: (() => {
-    if (process.argv.indexOf('-p') !== -1) {
-      return [
-        new webpack.DefinePlugin({
+    module: {
+        loaders: [
+            {
+                test: /\.jsx?/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['react', 'es2015'],
+                },
+            },
+        ],
+    },
+
+    plugins: (() => {
+        if (process.argv.indexOf('-p') !== -1) {
+            return [
+                new webpack.DefinePlugin({
           'process.env': { NODE_ENV: JSON.stringify('production') },
-        }),
+                }),
 
-        // force webpack's -p to use uglify (and that's the default behaviour) removing comments
-        uglify_js_plugin,
-      ];
-    }
-    return [
-      uglify_js_plugin,
-    ];
-  })()
+                // force webpack's -p to use uglify (and that's the default behaviour) removing comments
+                uglify_js_plugin,
+            ];
+        }
+        return [
+            uglify_js_plugin,
+        ];
+    })()
 };

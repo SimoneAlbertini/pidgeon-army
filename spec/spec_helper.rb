@@ -17,31 +17,27 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'capybara/rspec'
-require 'capybara-webkit'
+require 'selenium/webdriver'
+require 'chromedriver/helper'
 require_relative '../lib/environment'
 
 Capybara.register_driver :rack_test do |app|
   Capybara::RackTest::Driver.new(app, headers: {'HTTP_USER_AGENT' => 'Capybara'})
 end
 
-Capybara.register_driver :webkit do |app|
-  Capybara::Webkit::Driver.new(app, stdout: StringIO.new(''), stderr: StringIO.new(''), headers: {'HTTP_USER_AGENT' => 'Capybara'})
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: {args: %w(headless disable-gpu)}
+  )
+
+  Capybara::Selenium::Driver.new app,
+                                 browser: :chrome,
+                                 desired_capabilities: capabilities
 end
 
-def set_capybara_app
-  Capybara.app = App
-  Capybara.current_driver = :rack_test
-  Capybara.run_server = false
-end
-
-def setup_javascript_test
-  set_capybara_app
-  Capybara.current_driver = :webkit
-  Capybara.app_host = nil
-  Capybara.run_server = true
-end
-
-set_capybara_app
+Capybara.current_driver = :rack_test
+Capybara.javascript_driver = :headless_chrome
+Capybara.app = App
 
 RSpec.configure do |config|
   require 'database_cleaner'

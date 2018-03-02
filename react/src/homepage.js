@@ -40,7 +40,7 @@ class ContactsTable extends React.Component {
     }
 
     componentDidMount() {
-        let url = 'http://localhost:9292/api/contact-list';
+        let url = '/api/contact-list';
         fetch(url)
             .then(response => {
                 if (response.status >= 400) {

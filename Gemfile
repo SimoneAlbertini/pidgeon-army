@@ -10,6 +10,8 @@ gem 'pry'
 group :test do
   gem 'rspec'
   gem 'capybara', '<= 2.14'
-  gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'capybara-selenium'
+  gem 'chromedriver-helper'
+  gem 'launchy'
 end
