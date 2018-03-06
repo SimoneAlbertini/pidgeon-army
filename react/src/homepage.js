@@ -1,6 +1,6 @@
 import React from "react";
 
-class AddContactForm extends React.Component {
+export class AddContactForm extends React.Component {
     render_field(name, label) {
         let nameprop = 'add_form-' + name;
         return (
@@ -13,7 +13,7 @@ class AddContactForm extends React.Component {
 
     render() {
         return (
-            <form id="add_contact_form" action="#" method="POST">
+                <form id="add_contact_form" action="#" method="POST">
                 {this.render_field('name', 'First name:')}
                 {this.render_field('lastname', 'Last name:')}
                 {this.render_field('email', 'Email:')}

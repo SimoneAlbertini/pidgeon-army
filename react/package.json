@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/bundle.js",
+  "jest": {
+    "verbose": true,
+    "setupTestFrameworkScriptFile": "./jest_setup.js"
+  },
   "scripts": {
     "test": "jest"
   },
@@ -14,10 +18,15 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.4.1",
     "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "jest": "^22.1.4",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^22.4.2",
+    "react-test-renderer": "^16.2.0",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.5.5"
   }
