@@ -23,7 +23,7 @@ export class AddContactForm extends React.Component {
     }
 }
 
-function ContactRow(props) {
+const ContactRow = (props) => {
     return (
         <tr>
             <td>{props.contact.first_name}</td>
@@ -31,9 +31,9 @@ function ContactRow(props) {
             <td>{props.contact.email}</td>
         </tr>
     );
-}
+};
 
-class ContactsTable extends React.Component {
+export class ContactsTable extends React.Component {
     constructor() {
         super();
         this.state = {contacts: []};

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddContactForm /> snapshot 1`] = `
+<form
+  action="#"
+  id="add_contact_form"
+  method="POST"
+>
+  <div>
+    <label
+      htmlFor="add_form-name"
+    >
+      First name:
+    </label>
+    <input
+      name="add_form-name"
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="add_form-lastname"
+    >
+      Last name:
+    </label>
+    <input
+      name="add_form-lastname"
+      type="text"
+    />
+  </div>
+  <div>
+    <label
+      htmlFor="add_form-email"
+    >
+      Email:
+    </label>
+    <input
+      name="add_form-email"
+      type="text"
+    />
+  </div>
+  <button
+    type="submit"
+  >
+    Add
+  </button>
+</form>
+`;
